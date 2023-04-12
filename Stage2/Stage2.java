@@ -16,7 +16,7 @@ public class Stage2 {
         for (int i = 0; i < numDoors; i++) {
             Door d = new Door();
             doors.add(d);
-            central....
+            central
         }
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++) {
@@ -30,7 +30,7 @@ public class Stage2 {
         central.setSiren(siren);
         in.close();
     }
-    public void executeUserInteraction (Scanner in, PrintStream out){
+    public void executeUserInteraction (Scanner in, PrintStream out){//consola
         String command;
         char parameter;
         int i;
@@ -50,22 +50,61 @@ public class Stage2 {
                         doors.get(i).close();
                     break;
                 case 'w':
-                    ...                    break;
+                    i = Integer.parseInt(command.substring(1));
+                    parameter = in.next().charAt(0);
+                    if (parameter== 'o')
+                        windows.get(i).open();
+                    else
+                        windows.get(i).close();
+                    break;
                 case 'k':
                     parameter = in.next().charAt(0);
                     switch (parameter) {
-                        ...
+                        case 'a':
+                            central.arm();
+                            break;
+                        case 'p':
+                            //central.checkZone();//talvez?????
+                            break;
+                        case 'd':
+                            central.disarm();
+                            break;
                     }
             }
             central.checkZone();
         }
     }
-    public void printHeader(PrintStream out){
-        ...
+    public void printHeader(PrintStream out){// imprime la primera linea de .csv
+        out.print("Step");
+
+        for (int i=0; i < doors.size(); i++)
+            out.print("\t"+doors.get(i).getHeader());
+        for (int i=0; i < windows.size(); i++)
+            out.print("\t"+windows.get(i).getHeader());
+        /*
+        pir
+         */
+
+        out.print(siren.getHeader());
+        out.print(central.getHeader());
+
         out.println();
     }
-    public void printState(int step, PrintStream out){
-        ...
+    public void printState(int step, PrintStream out){// imprime las demas lineas de .csv
+        out.print(step);
+        out.print("\t");
+        for (int i=0; i < doors.size(); i++)
+            out.print("\t"+doors.get(i).getState());
+
+        for (int i=0; i < windows.size(); i++)
+            out.print("\t"+windows.get(i).getState());
+        /*
+        pir
+         */
+
+        out.print(siren.getState());
+        out.print(central.getState());
+
         out.println();
     }
     public static void main(String [] args) throws IOException {

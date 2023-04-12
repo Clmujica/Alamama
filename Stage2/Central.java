@@ -9,8 +9,10 @@ public class Central {
     public void arm() {
         isArmed=true;
     }
-    public void disarm() {
-        ....
+    public void disarm() {//talvez más
+        isArmed=false;
+        //...
+        //Desarmar to'o
     }
     public void setSiren(Siren s) {
         siren =s;
@@ -18,8 +20,8 @@ public class Central {
     public void addNewSensor(Sensor s){
         zone0.add(s);
     }
-    public void checkZone(){
-        ...
+    public void checkZone(){// queee?????
+        //...
     }
     public String getHeader(){
         return "Central";
