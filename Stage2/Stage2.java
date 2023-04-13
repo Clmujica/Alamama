@@ -16,13 +16,13 @@ public class Stage2 {
         for (int i = 0; i < numDoors; i++) {
             Door d = new Door();
             doors.add(d);
-            central
+            central.addNewSensor(d.getMagneticSensor());
         }
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++) {
             Window w = new Window();
             windows.add(w);
-            central....
+            central.addNewSensor(w.getMagneticSensor());
         }
         in.nextLine();
         String soundFile = in.next();
@@ -71,7 +71,7 @@ public class Stage2 {
                             break;
                     }
             }
-            central.checkZone();
+            central.checkZone();//Chequea que se haya abierto algun objeto
         }
     }
     public void printHeader(PrintStream out){// imprime la primera linea de .csv

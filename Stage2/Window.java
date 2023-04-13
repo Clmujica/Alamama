@@ -22,6 +22,15 @@ public class Window {
             return 1;
         }
     }
+
+    public MagneticSensor getMagneticSensor() {
+        return magneticSensor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     private MagneticSensor magneticSensor;
     private State state;
     private final int id;

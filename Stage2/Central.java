@@ -8,7 +8,7 @@ public class Central {
     }
     public void arm() {
         isArmed=true;
-    }
+    }//Armar to'o????
     public void disarm() {//talvez más
         isArmed=false;
         //...
@@ -21,7 +21,13 @@ public class Central {
         zone0.add(s);
     }
     public void checkZone(){// queee?????
-        //...
+        if(isArmed)
+        {
+            for (int i = 0; i < zone0.size(); ++i )
+            {
+                if(zone0.get(i).getState() == SwitchState.OPEN)  siren.play();
+            }
+        }
     }
     public String getHeader(){
         return "Central";
