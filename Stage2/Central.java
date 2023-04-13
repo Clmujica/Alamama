@@ -23,9 +23,14 @@ public class Central {
     public void checkZone(){// queee?????
         if(isArmed)
         {
-            for (int i = 0; i < zone0.size(); ++i )
-            {
-                if(zone0.get(i).getState() == SwitchState.OPEN)  siren.play();
+            for (int i = 0; i < zone0.size(); ++i ) {
+                if(zone0.get(i).getState() == SwitchState.OPEN)// {
+                    siren.play();
+                /*
+                    System.out.println("alarma activada");
+                }
+                
+                 */
             }
         }
     }

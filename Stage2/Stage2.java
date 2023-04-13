@@ -26,6 +26,7 @@ public class Stage2 {
         }
         in.nextLine();
         String soundFile = in.next();
+        System.out.println(soundFile);
         siren = new Siren(soundFile);
         central.setSiren(siren);
         in.close();
@@ -64,7 +65,7 @@ public class Stage2 {
                             central.arm();
                             break;
                         case 'p':
-                            //central.checkZone();//talvez?????
+                            //Perimetro hacer metodo de eso para Central
                             break;
                         case 'd':
                             central.disarm();
@@ -108,12 +109,17 @@ public class Stage2 {
         out.println();
     }
     public static void main(String [] args) throws IOException {
+        /*
         if (args.length != 1) {
-            System.out.println("Usage: java Stage1 <configurationFile.txt>");
+            System.out.println("Usage: java Stage2 <configurationFile.txt>");
             System.exit(-1);
         }
-        Scanner in = new Scanner(new File(args[0]));
+        */
+
+        //Scanner in = new Scanner(new File(args[0])); // original
+        Scanner in = new Scanner(new File("config.txt"));
         //System.out.println("File: " + args[0]);
+        System.out.println("File: config.txt");
         Stage2 stage = new Stage2();
         stage.readConfiguration(in);
         stage.executeUserInteraction(new Scanner(System.in), new PrintStream(new File("output.csv")));
