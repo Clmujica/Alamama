@@ -20,18 +20,22 @@ public class Central {
     public void addNewSensor(Sensor s){
         zone0.add(s);
     }
-    public void checkZone(){// queee?????
+    public void checkZone(){//Chequea que los estados de los sensores
         if(isArmed)
         {
+            int e = 0; //Almacenará cuantas estan encedidas
             for (int i = 0; i < zone0.size(); ++i ) {
-                if(zone0.get(i).getState() == SwitchState.OPEN)// {
-                    siren.play();
-                /*
+                if(zone0.get(i).getState() == SwitchState.OPEN ) {
+                    ++e;
+                    if (siren.getState() == 0) siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
+                    /* Esto es por si no funciona la lectura del audio
+                {
                     System.out.println("alarma activada");
                 }
-                
                  */
+                }
             }
+            if(e == 0) siren.stop(); //Si no hay ninguna encendida, apagará la alarma
         }
     }
     public String getHeader(){

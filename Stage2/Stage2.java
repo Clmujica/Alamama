@@ -16,13 +16,13 @@ public class Stage2 {
         for (int i = 0; i < numDoors; i++) {
             Door d = new Door();
             doors.add(d);
-            central.addNewSensor(d.getMagneticSensor());
+            central.addNewSensor(d.getMagneticSensor());//Se irán agregando los sensores de cada puerta a el array zone0 de central
         }
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++) {
             Window w = new Window();
             windows.add(w);
-            central.addNewSensor(w.getMagneticSensor());
+            central.addNewSensor(w.getMagneticSensor());//Se irán agregando los sensores de cada ventana a el array zone0 de central
         }
         in.nextLine();
         String soundFile = in.next();
@@ -85,8 +85,9 @@ public class Stage2 {
         /*
         pir
          */
-
+        out.print("\t");
         out.print(siren.getHeader());
+        out.print("\t");
         out.print(central.getHeader());
 
         out.println();
@@ -102,8 +103,10 @@ public class Stage2 {
         /*
         pir
          */
-
+        out.print("\t");
         out.print(siren.getState());
+        out.print("\t");
+        out.print("\t");
         out.print(central.getState());
 
         out.println();
