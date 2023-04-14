@@ -19,7 +19,7 @@ public class Person {
         return id;
     }
 
-    public void movePerson(Character m){
+    public void movePerson(Character m){ //acá podemos reutilizar el código para  el stage 4, pasandole ahora como parámetros movePerson(Person p, Character m){...}
         switch(m){
             case (m == '←'):
                 xx = xx - 0.5;
