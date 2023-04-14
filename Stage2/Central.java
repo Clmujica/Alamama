@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Central {
@@ -27,15 +28,12 @@ public class Central {
             for (int i = 0; i < zone0.size(); ++i ) {
                 if(zone0.get(i).getState() == SwitchState.OPEN ) {
                     ++e;
-                    if (siren.getState() == 0) siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
-                    /* Esto es por si no funciona la lectura del audio
-                {
-                    System.out.println("alarma activada");
-                }
-                 */
+                    if (siren.getState() == 0) {
+                        siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
+                    }
                 }
             }
-            if(e == 0) siren.stop(); //Si no hay ninguna encendida, apagará la alarma
+            if(e == 0 && siren.getState() == 1) siren.stop(); //Si no hay ninguna encendida, apagará la alarma
         }
     }
     public String getHeader(){
