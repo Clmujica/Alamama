@@ -1,7 +1,8 @@
 public class PIR_Detector extends Sensor{
-    public PIR_Detector(){
+    public PIR_Detector(int pos_x,int pos_y){ //aca las posiciones del PIR las leemos del .txt o se las damos arbitrariamente?
 
-        //
+        this.pos_x = pos_x;
+        this.pos_y = pos_y;
 
     }
     {
@@ -24,8 +25,6 @@ public class PIR_Detector extends Sensor{
             System.out.println("ángulo de la persona: ", alfa, "°"); 
         }
         */
-
-
     }
     @Override
     public State getState() {
@@ -33,10 +32,12 @@ public class PIR_Detector extends Sensor{
     }
     /*
     Agregar metodos de detector
-
-
-
      */
+
+    public String getHeader(){
+        return "PIR";
+    }
+
     public int getId() {
         return id;
     }
