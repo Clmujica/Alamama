@@ -12,6 +12,7 @@ public class Door {
         magneticSensor.moveMagnetAwayFromSwitch();
 
     }
+
     public void close() {
         this.state = State.CLOSE;
         magneticSensor.putMagnetNearSwitch();

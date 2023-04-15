@@ -10,7 +10,8 @@ public class PIR_Detector extends Sensor{
 
     public void inArea(Person p) { //booleano? (si es así, puede llamar otra función que obtenga el ángulo y distancia donde está la persona)
         //Que reconozca que esta dentro del area
-        /*if(detectar_persona() == True){ //pseudocódigo 
+        /*
+        if(detectar_persona() == True){ //pseudocódigo
             int X = p.getXx();
             int Y = p.getYy();
             System.out.println("posición de la persona: ", X, Y);
@@ -23,6 +24,8 @@ public class PIR_Detector extends Sensor{
             System.out.println("ángulo de la persona: ", alfa, "°"); 
         }
         */
+
+
     }
     @Override
     public State getState() {

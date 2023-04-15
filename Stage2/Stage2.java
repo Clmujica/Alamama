@@ -62,10 +62,17 @@ public class Stage2 {
                     parameter = in.next().charAt(0);
                     switch (parameter) {
                         case 'a':
-                            central.arm();
+                            if(central.getStPer() == 0) central.arm();
+                            else{
+                                System.out.println("Tiene que estar desarmado para poder volver a armar");
+                            }
                             break;
                         case 'p':
-                            //Perimetro hacer metodo de eso para Central
+                            if(central.getState() == 0) central.actPer();
+                            else{
+                                System.out.println("Tiene que estar desarmado para poder activar el perimetro");
+                            }
+
                             break;
                         case 'd':
                             central.disarm();
