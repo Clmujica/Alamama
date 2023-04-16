@@ -1,8 +1,7 @@
 public class PIR_Detector extends Sensor{
-    public PIR_Detector(int pos_x,int pos_y){ //aca las posiciones del PIR las leemos del .txt o se las damos arbitrariamente?
-
-        this.pos_x = pos_x;
-        this.pos_y = pos_y;
+    public PIR_Detector(double pos){ //aca las posiciones del PIR las leemos del .txt o se las damos arbitrariamente?
+        this.pos = pos;
+        this.
 
     }
     {
@@ -42,6 +41,7 @@ public class PIR_Detector extends Sensor{
         return id;
     }
 
+    private double pos;
     private State state;
     private final int id;
 
