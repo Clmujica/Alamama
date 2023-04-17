@@ -18,20 +18,20 @@ public class Stage3 {
         for (int i = 0; i < numDoors; i++) {
             Door d = new Door();
             doors.add(d);
-            central.addNewSensor(d.getMagneticSensor());//Se irán agregando los sensores de cada puerta a el array zone0 de central
+            central.addNewSensor(d.getMagneticSensor(), 0);//Se irán agregando los sensores de cada puerta a el array zone0 de central
         }
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++) {
             Window w = new Window();
             windows.add(w);
-            central.addNewSensor(w.getMagneticSensor());//Se irán agregando los sensores de cada ventana a el array zone0 de central
+            central.addNewSensor(w.getMagneticSensor(), 0);//Se irán agregando los sensores de cada ventana a el array zone0 de central
         }
         int numPIRs = in.nextInt();
         in.nextLine();
         for (int i = 0; i < numPIRs; i++) {
             PIR_Detector p = new PIR_Detector(in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt()); //coordenada en x, y, ángulo phi (dirección del cono), ángulo theta (del cono), radio
             pirs.add(p);
-            central.addNew(p); //Se agrega el pir a la central
+            central.addNewSensor(p, 1); //Se agrega el pir a la central
             in.nextLine();
         }
         String soundFile = in.next();
@@ -87,9 +87,7 @@ public class Stage3 {
                             break;
                     }
             }
-            central.checkZone();//Chequea que se haya abierto algun objeto
-            for(int i=0; i<personas.size(); ++i){
-                central.inArea(personas.get(i));
+            central.checkZone(personas);//Chequea que se haya abierto algun objeto
             }
         }
     }
@@ -97,15 +95,16 @@ public class Stage3 {
         out.print("Step");
 
         for (int i=0; i < doors.size(); i++)
-            out.print("\t"+doors.get(i).getHeader());
+            out.print("\t"+doors.get(i).getHeader() + i);
         for (int i=0; i < windows.size(); i++)
-            out.print("\t"+windows.get(i).getHeader());
+            out.print("\t"+windows.get(i).getHeader() + i);
         /*
         pir
          */
-        out.print("\t");
-        out.print(pir.getHeader());
+        for (int i = 0; i < pirs.size(); ++i)
+            out.print("\t" + pirs.get(i).getHeader()+i);
 
+        out.print("\t");
         out.print(siren.getHeader());
         out.print("\t");
         out.print(central.getHeader());
@@ -153,6 +152,8 @@ public class Stage3 {
 
     private ArrayList<Door> doors;
     private ArrayList<Window> windows;
+    private ArrayList<PIR_Detector> pirs;
+    private ArrayList<Person> personas;
     private Central central;
     private Siren siren;
 }
