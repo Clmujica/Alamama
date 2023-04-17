@@ -8,6 +8,7 @@ public class Stage3 {
     public Stage3() {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
+        pirs = new ArrayList<PIR_Detector>();
     }
     public void readConfiguration(Scanner in){
         // reading <#_doors> <#_windows> <#_PIRs>
@@ -24,15 +25,14 @@ public class Stage3 {
             windows.add(w);
             central.addNewSensor(w.getMagneticSensor());//Se irán agregando los sensores de cada ventana a el array zone0 de central
         }
-        /* PIRs
         int numPIRs = in.nextInt();
-        for (int i = 0; i < numWindows; i++) {
-            PIR_Detector p = new PIR_Detector(); // no sé si pasarle directamente x,y o leerlo de algun texto.
-            pirs.add(p); //no se si sera pirs o pir_detectors
-            central.addNewSensor(p);//Se agrega el pir a la central
-        }
-         */
         in.nextLine();
+        for (int i = 0; i < numPIRs; i++) {
+            PIR_Detector p = new PIR_Detector(in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt()); //coordenada en x, y, ángulo phi (dirección del cono), ángulo theta (del cono), radio
+            pirs.add(p);
+            central.addNewSensor(p); //Se agrega el pir a la central
+            in.nextLine();
+        }
         String soundFile = in.next();
         System.out.println(soundFile);
         siren = new Siren(soundFile);
