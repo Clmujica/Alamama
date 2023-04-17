@@ -19,8 +19,16 @@ public class Central {
     public void setSiren(Siren s) {
         siren =s;
     }
-    public void addNewSensor(Sensor s){
-        zone0.add(s);
+    public void addNewSensor(Sensor s, int n){ 
+        if(n==0){
+            zone0.add(s);
+        }
+        else if(n==1){
+            zone1.add(s);
+        }
+        else{
+            System.out.println("Zona Inválida");
+        }
     }
 
     public void actPer(){
@@ -32,6 +40,7 @@ public class Central {
         for(int i = 0; i < zone1.size(); ++i){
             double L = p.getLength(zone1.get(i).);
         }
+        //agregar metodos del pir
     }
     public void checkZone(){//Chequea que los estados de los sensores
         if(isArmed || per)

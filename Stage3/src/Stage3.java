@@ -9,6 +9,7 @@ public class Stage3 {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
         pirs = new ArrayList<PIR_Detector>();
+        personas = new ArrayList<Person>();
     }
     public void readConfiguration(Scanner in){
         // reading <#_doors> <#_windows> <#_PIRs>
@@ -30,7 +31,7 @@ public class Stage3 {
         for (int i = 0; i < numPIRs; i++) {
             PIR_Detector p = new PIR_Detector(in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt()); //coordenada en x, y, ángulo phi (dirección del cono), ángulo theta (del cono), radio
             pirs.add(p);
-            central.addNewSensor(p); //Se agrega el pir a la central
+            central.addNew(p); //Se agrega el pir a la central
             in.nextLine();
         }
         String soundFile = in.next();
@@ -87,6 +88,9 @@ public class Stage3 {
                     }
             }
             central.checkZone();//Chequea que se haya abierto algun objeto
+            for(int i=0; i<personas.size(); ++i){
+                central.inArea(personas.get(i));
+            }
         }
     }
     public void printHeader(PrintStream out){// imprime la primera linea de .csv
