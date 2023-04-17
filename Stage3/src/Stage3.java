@@ -97,12 +97,12 @@ public class Stage3 {
         out.print("Step");
 
         for (int i=0; i < doors.size(); i++)
-            out.print("\t"+doors.get(i).getHeader());
+            out.print("\t"+doors.get(i).getHeader()+i);
         for (int i=0; i < windows.size(); i++)
-            out.print("\t"+windows.get(i).getHeader());
-        /*
-        pir
-         */
+            out.print("\t"+windows.get(i).getHeader()+i);
+        for (int i=0; i < pirs.size(); i++)
+        out.print("\t"+pirs.get(i).getHeader()+i);
+
         out.print("\t");
         out.print(pir.getHeader());
 
@@ -123,7 +123,7 @@ public class Stage3 {
         /*
         pir
 
-        pir.inArea(p); //esto daría la posición si encuentra a alguien(?)
+        pir.inArea(p); //esto daría la posición si encuentra a alguien(?) //no
 
          */
         out.print("\t");
