@@ -134,15 +134,15 @@ public class Stage3 {
         out.println();
     }
     public static void main(String [] args) throws IOException {
-        /*
+
         if (args.length != 1) {
             System.out.println("Usage: java Stage3 <configurationFile.txt>");
             System.exit(-1);
         }
-        */
 
-        //Scanner in = new Scanner(new File(args[0])); // original
-        Scanner in = new Scanner(new File("config.txt"));
+
+        Scanner in = new Scanner(new File(args[0])); // original
+        //Scanner in = new Scanner(new File("config.txt"));
         //System.out.println("File: " + args[0]);
         System.out.println("File: config.txt");
         Stage3 stage = new Stage3();
