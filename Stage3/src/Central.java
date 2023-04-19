@@ -36,39 +36,8 @@ public class Central {
             per = true;
         }
     }
-    public boolean inArea(Person p) {//me falta terminarlo, pero me acorde que tengo que hacer algo, asi que mañana lo hago
-        for (int i = 0; i < zone1.size(); ++i) {
-            PIR_Detector pir = (PIR_Detector) zone1.get(i);
-            double a = 0;
-            double L = p.getLength(pir.getCoordenada_x(),pir.getCoordenada_y());//Se le entrega la posicion de el pir al metodo Len
-            if (L <= pir.getRadio()) {//Si su distancia es menor que el radio del cono, significa que PUEDE estar dentro
-                double XX = p.getXx() - pir.getCoordenada_x();
-                //Esto para calcular el alfa (angulo de la posicion de persona respecto a pir)
-                if ( XX > 0) {//Si su posicion x positiva, puede estar en el cuadrante 1 o 4
-                    if ((p.getYy() - pir.getCoordenada_y()) < 0) {//Cuadrante 4
-                        a = java.lang.Math.toDegrees(java.lang.Math.asin(((XX / L)))) + 270;//Esta en grados hexadecimales
-                    } else {//Cuadrante 1
-                        a = java.lang.Math.toDegrees(java.lang.Math.acos((XX / L)));//Esta en grados hexadecimales
-                    }
 
-                } else {//Si su posicion y positiva, puede estar en el cuadrante 2 o 3
-                    if ((p.getYy() - pir.getCoordenada_y()) < 0) {//Cuadrante 3
-                        a = java.lang.Math.toDegrees(java.lang.Math.acos((XX / L))) + 180;
-                    } else {
-                        a = java.lang.Math.toDegrees(java.lang.Math.asin((XX / L))) + 90;
-                    }
-                }
-                //Comprobar si el angulo se encuentra en la zona
-                if (a <= (pir.getTheta() + pir.getPhi())) {//Ve si esta mas arriba del cono
-                    if(a >=pir.getPhi()){// si esta mas abajo del cono
-                        return true;//Retornara verdadero
-                    }
-                }
-            }
-        }
-        //Esto representa que no se encuntra en la zona
-        return false;
-    }
+
     public void checkZone(ArrayList<Person> people){//Chequea que los estados de los sensores, se le entrega las personas que existen
         int e = 0; //Almacenará cuantas estan encedidas
         if(isArmed || per)
@@ -77,13 +46,16 @@ public class Central {
                 if (zone0.get(i).getState() == SwitchState.OPEN) {
                     ++e;
                     if (siren.getState() == 0) siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
-
                 }
                 if (!per) {
                     for (int j = 0; j < people.size(); ++j) {//Ira por cada persona
-                        if (this.inArea(people.get(j))) {//Comprobara si persona esta en el area de cada pir
-                            ++e;//Aumentara la cantidad de alarmas encendidas
-                            if (siren.getState() == 0) siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
+                        for(int k = 0; k < zone1.size(); ++i) {//Ira por cada pir
+                            PIR_Detector pir = (PIR_Detector) zone1.get(k);
+                            pir.inArea(people.get(j));
+                            if(pir.getState() == SwitchState.OPEN ) {
+                                if(siren.getState() == 0) siren.play();//prendera la sirena si esta en el área
+                            }
+
                         }
                     }
                 }
