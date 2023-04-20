@@ -11,7 +11,7 @@ public class Central {
     }
     public void arm() {
         isArmed=true;
-    }//Armar to'o????
+    }
     public void disarm() {
         isArmed=false;//apaga la central
         per = false;//desactiva el perimetro
@@ -51,11 +51,9 @@ public class Central {
                     for (int j = 0; j < people.size(); ++j) {//Ira por cada persona
                         for(int k = 0; k < zone1.size(); ++k) {//Ira por cada pir
                             PIR_Detector pir = (PIR_Detector) zone1.get(k);
-                            System.out.println("Estamos en el pir " + k);
                             pir.inArea(people.get(j));
                             if(pir.getState() == SwitchState.OPEN ) {
                                 ++e;
-                                System.out.println("El pir"+ k + " esta prendido");
                                 if(siren.getState() == 0) siren.play();//prendera la sirena si esta en el área, pero debe estar apagada antes
                             }
                         }

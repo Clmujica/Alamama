@@ -66,7 +66,7 @@ public class AePlayWave extends Thread {
 			auline = (SourceDataLine) AudioSystem.getLine(info);
 			auline.open(format);
 		} catch (LineUnavailableException e) {
-			e.printStackTrace();
+			System.out.println("La alarma sono");
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();

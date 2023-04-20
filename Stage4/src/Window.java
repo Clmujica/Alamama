@@ -1,7 +1,7 @@
 public class Window {
     public Window() {
         magneticSensor = new MagneticSensor();
-        state = State.CLOSE;
+        this.state = State.CLOSE;
         magneticSensor.putMagnetNearSwitch();
     }
     {

@@ -35,7 +35,10 @@ public class Central {
                 if(zone0.get(i).getState() == SwitchState.OPEN ) {
                     ++e;
                     if (siren.getState() == 0) {
-                        siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
+
+                            siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
+
+                        }
                     }
                 }
             }

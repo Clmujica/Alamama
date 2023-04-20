@@ -53,7 +53,7 @@ public class AePlayWave extends Thread {
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(m_url);
 		} catch (UnsupportedAudioFileException e1) {
-			e1.printStackTrace();
+			System.out.println("La alarma sono");
 			return;
 		} catch (IOException e1) {
 			e1.printStackTrace();

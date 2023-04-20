@@ -44,13 +44,11 @@ public class PIR_Detector extends Sensor{
             //Comprobar si el angulo se encuentra en la zona
             if (a <= (this.getTheta() + this.getPhi())) {//Ve si esta mas arriba del cono
                 if(a >=this.getPhi()){// si esta mas abajo del cono
-                    System.out.println("Estamos en el área");
                     this.open();//abrira el sensor
                 }
             }
         }else {
             //Esto representa que no se encuntra en la zona
-            System.out.println("No estamos en el área");
             this.close();
         }
     }

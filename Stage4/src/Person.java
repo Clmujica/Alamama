@@ -14,19 +14,15 @@ public class Person {
     public void movePerson(char m){ //acá podemos reutilizar el código para  el stage 4, pasandole ahora como parámetros movePerson(Person p, Character m){...}
         switch(m){
             case '←':
-                System.out.println("Izquierda");
                 this.xx = xx - 0.5;
                 break;
             case '↑':
-                System.out.println("Arriba");
                 this.yy = yy + 0.5;
                 break;
             case '→':
-                System.out.println("Derecha");
                 this.xx = xx + 0.5;
                 break;
             case '↓':
-                System.out.println("Abajo");
                 this.yy = yy - 0.5;
                 break;
         }

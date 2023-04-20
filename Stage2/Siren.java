@@ -10,7 +10,6 @@ public class Siren {
             exc.printStackTrace(System.out);
         }
         isSounding = false;
-        //... watafac
     }
     public void play(){
         isSounding = true;

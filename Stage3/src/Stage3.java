@@ -154,12 +154,12 @@ public class Stage3 {
             System.out.println("Usage: java Stage3 <configurationFile.txt>");
             System.exit(-1);
         }
-        */
+*/
 
-        //Scanner in = new Scanner(new File(args[0])); // original
-        Scanner in = new Scanner(new File("config.txt"));
-        //System.out.println("File: " + args[0]);
-        System.out.println("File: config.txt");
+        Scanner in = new Scanner(new File(args[0])); // original
+        //Scanner in = new Scanner(new File("config.txt"));
+        System.out.println("File: " + args[0]);
+        //System.out.println("File: config.txt");
         Stage3 stage = new Stage3();
         stage.readConfiguration(in);
         stage.executeUserInteraction(new Scanner(System.in), new PrintStream(new File("output.csv")));
