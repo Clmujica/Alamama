@@ -36,9 +36,9 @@ public class PIR_Detector extends Sensor{
 
             } else {//Si su posicion y positiva, puede estar en el cuadrante 2 o 3
                 if ((p.getYy() - this.getCoordenada_y()) < 0) {//Cuadrante 3
-                    a = java.lang.Math.toDegrees(java.lang.Math.acos((XX / L))) + 180;
-                } else {
-                    a = java.lang.Math.toDegrees(java.lang.Math.asin((XX / L))) + 90;
+                    a = java.lang.Math.toDegrees(java.lang.Math.acos(((-XX) / L))) + 180;//-XX para que se haga positivo y tenga sentido en el cálculo
+                } else {//Cuadrante 2
+                    a = java.lang.Math.toDegrees(java.lang.Math.asin(((-XX) / L))) + 90;//Lo mismo aquí
                 }
             }
             //Comprobar si el angulo se encuentra en la zona
