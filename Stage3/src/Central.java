@@ -6,6 +6,7 @@ public class Central {
         zone0 = new ArrayList<Sensor>();
         zone1 = new ArrayList<Sensor>();
         isArmed = false;
+        per = false;
         siren = null;
     }
     public void arm() {
@@ -36,30 +37,30 @@ public class Central {
             per = true;
         }
     }
-
-
     public void checkZone(ArrayList<Person> people){//Chequea que los estados de los sensores, se le entrega las personas que existen
         int e = 0; //Almacenará cuantas estan encedidas
-        if(isArmed || per)
-        {
+        if(isArmed || per) {
             for (int i = 0; i < zone0.size(); ++i ) {
                 if (zone0.get(i).getState() == SwitchState.OPEN) {
                     ++e;
-                    if (siren.getState() == 0) siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
+                    if (siren.getState() == 0)
+                        siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
                 }
+            }
+
                 if (!per) {
                     for (int j = 0; j < people.size(); ++j) {//Ira por cada persona
-                        for(int k = 0; k < zone1.size(); ++i) {//Ira por cada pir
+                        for(int k = 0; k < zone1.size(); ++k) {//Ira por cada pir
                             PIR_Detector pir = (PIR_Detector) zone1.get(k);
+                            System.out.println("Estamos en el pir " + k);
                             pir.inArea(people.get(j));
                             if(pir.getState() == SwitchState.OPEN ) {
+                                System.out.println("El pir"+ k + " esta prendido");
                                 if(siren.getState() == 0) siren.play();//prendera la sirena si esta en el área
                             }
-
                         }
                     }
                 }
-            }
             }
             if(e == 0 && siren.getState() == 1) siren.stop(); //Si no hay ninguna encendida, apagará la alarma
         }

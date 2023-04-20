@@ -5,6 +5,7 @@ public class PIR_Detector extends Sensor{
         this.phi = phi;
         this.theta = theta;
         this.radio = radio;
+        this.state = SwitchState.CLOSE;
     }
     {
         id = nextId++;
@@ -21,8 +22,8 @@ public class PIR_Detector extends Sensor{
     Agregar metodos de detector
      */
     public void inArea(Person p){
-        double L = p.getLength(this.getCoordenada_x(),this.getCoordenada_y());//Se le entrega la posicion de el pir al metodo Len
-        if (L <= this.getRadio()) {//Si su distancia es menor que el radio del cono, significa que PUEDE estar dentro
+        double L = p.getLength(this.getCoordenada_x(), this.getCoordenada_y());//Se le entrega la posicion de el pir al metodo Len
+        if (L < this.getRadio()) {//Si su distancia es menor que el radio del cono, significa que PUEDE estar dentro
             double XX = p.getXx() - this.getCoordenada_x();
             double a = 0;
             //Esto para calcular el alfa (angulo de la posicion de persona respecto a pir)
@@ -43,12 +44,15 @@ public class PIR_Detector extends Sensor{
             //Comprobar si el angulo se encuentra en la zona
             if (a <= (this.getTheta() + this.getPhi())) {//Ve si esta mas arriba del cono
                 if(a >=this.getPhi()){// si esta mas abajo del cono
+                    System.out.println("Estamos en el área");
                     this.open();//abrira el sensor
                 }
             }
+        }else {
+            //Esto representa que no se encuntra en la zona
+            System.out.println("No estamos en el área");
+            this.close();
         }
-        //Esto representa que no se encuntra en la zona
-        this.close();
     }
 
 
@@ -65,7 +69,7 @@ public void close() {
         }
 
     public String getHeader(){
-        return "PIR";
+        return "Pir";
     }
 
     public int getId() {

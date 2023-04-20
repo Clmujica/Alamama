@@ -29,7 +29,7 @@ public class Stage3 {
         int numPIRs = in.nextInt();
         in.nextLine();
         for (int i = 0; i < numPIRs; i++) {
-            PIR_Detector p = new PIR_Detector(in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt(), in.nextInt()); //coordenada en x, y, ángulo phi (dirección del cono), ángulo theta (del cono), radio
+            PIR_Detector p = new PIR_Detector(in.nextDouble(), in.nextDouble(), in.nextInt(), in.nextInt(), in.nextInt()); //coordenada en x, y, ángulo phi (dirección del cono), ángulo theta (del cono), radio
             pirs.add(p);
             central.addNewSensor(p, 1); //Se agrega el pir a la central
             in.nextLine();
@@ -51,6 +51,15 @@ public class Stage3 {
             command = in.next();
             if (command.charAt(0)=='x') break;
             switch (command.charAt(0)) {
+                case 'c':
+                    Person p = new Person(in.nextDouble(), in.nextDouble());
+                    personas.add(p);
+                    break;
+                case 'p':
+                    i = Integer.parseInt(command.substring(1));//El valor i
+                    parameter = in.next().charAt(0);//El valor de la flecha
+                    personas.get(i).movePerson(parameter);
+                    break;
                 case 'd':
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
@@ -71,13 +80,17 @@ public class Stage3 {
                     parameter = in.next().charAt(0);
                     switch (parameter) {
                         case 'a':
-                            if(central.getStPer() == 0) central.arm();
+                            if(central.getStPer() == 0) {
+                                central.arm();
+                            }
                             else{
                                 System.out.println("Tiene que estar desarmado para poder volver a armar");
                             }
                             break;
                         case 'p':
-                            if(central.getState() == 0) central.actPer();
+                            if(central.getState() == 0) {
+                                central.actPer();
+                            }
                             else{
                                 System.out.println("Tiene que estar desarmado para poder activar el perimetro");
                             }
@@ -86,11 +99,12 @@ public class Stage3 {
                             central.disarm();
                             break;
                     }
+                    break;
             }
             central.checkZone(personas);//Chequea que se haya abierto algun objeto
             }
         }
-    }
+
     public void printHeader(PrintStream out){// imprime la primera linea de .csv
         out.print("Step");
 
@@ -119,12 +133,13 @@ public class Stage3 {
 
         for (int i=0; i < windows.size(); i++)
             out.print("\t"+windows.get(i).getState());
-        /*
-        pir
-
-        pir.inArea(p); //esto daría la posición si encuentra a alguien(?)
-
-         */
+        for(int i = 0; i< pirs.size(); ++i){
+            if(pirs.get(i).getState()==SwitchState.OPEN){
+                out.print("\t"+0);
+            }else{
+                out.print("\t"+1);
+            }
+        }
         out.print("\t");
         out.print(siren.getState());
         out.print("\t");
@@ -134,15 +149,15 @@ public class Stage3 {
         out.println();
     }
     public static void main(String [] args) throws IOException {
-
+        /*
         if (args.length != 1) {
             System.out.println("Usage: java Stage3 <configurationFile.txt>");
             System.exit(-1);
         }
+        */
 
-
-        Scanner in = new Scanner(new File(args[0])); // original
-        //Scanner in = new Scanner(new File("config.txt"));
+        //Scanner in = new Scanner(new File(args[0])); // original
+        Scanner in = new Scanner(new File("config.txt"));
         //System.out.println("File: " + args[0]);
         System.out.println("File: config.txt");
         Stage3 stage = new Stage3();
