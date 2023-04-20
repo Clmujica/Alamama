@@ -43,8 +43,7 @@ public class Central {
             for (int i = 0; i < zone0.size(); ++i ) {
                 if (zone0.get(i).getState() == SwitchState.OPEN) {
                     ++e;
-                    if (siren.getState() == 0)
-                        siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
+                    if (siren.getState() == 0) siren.play();//Si no esta sonando, la encenderá, pero si lo esta, no lo hará de nuevo
                 }
             }
 
@@ -57,7 +56,7 @@ public class Central {
                             if(pir.getState() == SwitchState.OPEN ) {
                                 ++e;
                                 System.out.println("El pir"+ k + " esta prendido");
-                                if(siren.getState() == 0) siren.play();//prendera la sirena si esta en el área
+                                if(siren.getState() == 0) siren.play();//prendera la sirena si esta en el área, pero debe estar apagada antes
                             }
                         }
                     }
