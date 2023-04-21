@@ -15,15 +15,16 @@ State.java \
 SwitchState.java \
 Window.java
 
-MAIN = Stage1.java
+MAIN = Stage1
 
-default: classes run
+default: classes
 
 
 classes: $(CLASSES:.java=.class)
 
+
 run: $(MAIN).class
-	$(JVM) $(MAIN) $(FILE) > $(OUTPUT)
+	$(JVM) $(MAIN) $(FILE)
 clean:
 	$(RM) *.class
 

@@ -7,17 +7,20 @@ OUTPUT = output.csv
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 CLASSES = \
-Stage2.java \
+Stage3.java \
 Central.java \
+AePlayWave.java \
 Door.java \
 MagneticSensor.java \
+PIR_Detector.java \
+Person.java \
 Sensor.java \
+Siren.java \
 State.java \
 SwitchState.java \
-Siren.java \
 Window.java
 
-MAIN = Stage2
+MAIN = Stage3
 
 default: classes
 
@@ -25,6 +28,6 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 run: $(MAIN).class
-	$(JVM) $(MAIN) $(FILE) 
+	$(JVM) $(MAIN) $(FILE)
 clean:
 	$(RM) *.class
